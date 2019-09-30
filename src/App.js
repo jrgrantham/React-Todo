@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -8,36 +8,56 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [
+      todos: [
         {
           id: 1,
-          item: 'test entry 1',
-          completed: false,
+          description: "test entry 1",
+          completed: false
         },
         {
           id: 2,
-          item: 'test entry 2',
-          completed: false,
+          description: "test entry 2",
+          completed: false
         }
       ],
-      newEntryForm: '',
-    }
+      newTodoName: ""
+    };
+  }
+
+  onNewTodo = () => {
+    this.setState(currentState => {
+      return {
+        todos: currentState.todos.concat({
+          // id: uuid(),
+          description: currentState.newTodoName,
+          completed: false
+        })
+      }
+    })
   }
 
   render() {
 
-    const todoList = this.state.list;
-    console.log(this.state.list);
-    console.log(todoList);
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        {todoList.map(item => (
-          <div key={item.id}>
-            {item.item}
-          </div>
+        
+        {this.state.todos.map(item => (
+          <div key={item.id}>{item.description}</div>
         ))}
 
+        <input
+          value = {this.state.newTodoName}
+          onChange = {event => this.setState({
+            newTodoName: event.target.value
+          })} 
+        />
+          
+        <button
+          onClick ={this.onNewTodo}
+        >add entry</button>
+        <br></br>
+        <button>clear completed</button>
       </div>
     );
   }
