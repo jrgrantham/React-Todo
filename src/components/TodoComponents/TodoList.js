@@ -5,9 +5,9 @@ import React, { Component } from "react";
 
 export default class TodoList extends Component {
   render() {
-    // toggleComplete = this.props.toggleComplete;
     console.log(this.props);
-
+    
+    // const toggleComplete = this.props.toggleComplete;
     const todos = this.props.todos;
     return (
       <>
