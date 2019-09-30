@@ -57,6 +57,16 @@ class App extends React.Component {
     })
   }
 
+  filterCompleted = () => {
+    this.setState(currentState => {
+      return {
+        todos: currentState.todos.filter(todo => {
+          return todo.completed === false;
+        })
+      }
+    })
+  }
+
   render() {
     return (
       <div>
@@ -77,7 +87,9 @@ class App extends React.Component {
 
         <button onClick={this.onNewTodo}>add entry</button>
         <br></br>
-        <button>clear completed</button>
+        <button
+          onClick={this.filterCompleted}
+        >clear completed</button>
       </div>
     );
   }
