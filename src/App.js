@@ -27,35 +27,38 @@ class App extends React.Component {
   onNewTodo = () => {
     this.setState(currentState => {
       return {
+        newTodoName: "",
         todos: currentState.todos.concat({
-          // id: uuid(),
+          id: Date.now(),
           description: currentState.newTodoName,
           completed: false
         })
-      }
-    })
-  }
+      };
+    });
+  };
 
   render() {
-
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        
+
         {this.state.todos.map(item => (
-          <div key={item.id}>{item.description}</div>
+          <div key={item.id}>
+            {item.id} {item.description}
+            <button>complete</button>
+          </div>
         ))}
 
         <input
-          value = {this.state.newTodoName}
-          onChange = {event => this.setState({
-            newTodoName: event.target.value
-          })} 
+          value={this.state.newTodoName}
+          onChange={event =>
+            this.setState({
+              newTodoName: event.target.value
+            })
+          }
         />
-          
-        <button
-          onClick ={this.onNewTodo}
-        >add entry</button>
+
+        <button onClick={this.onNewTodo}>add entry</button>
         <br></br>
         <button>clear completed</button>
       </div>
