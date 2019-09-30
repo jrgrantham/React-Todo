@@ -10,7 +10,13 @@ class App extends React.Component {
     this.state = {
       list: [
         {
-          item: 'test entry',
+          id: 1,
+          item: 'test entry 1',
+          completed: false,
+        },
+        {
+          id: 2,
+          item: 'test entry 2',
           completed: false,
         }
       ],
@@ -19,9 +25,19 @@ class App extends React.Component {
   }
 
   render() {
+
+    const todoList = this.state.list;
+    console.log(this.state.list);
+    console.log(todoList);
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
+        {todoList.map(item => (
+          <div key={item.id}>
+            {item.item}
+          </div>
+        ))}
+
       </div>
     );
   }
